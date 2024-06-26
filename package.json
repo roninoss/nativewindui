@@ -3,50 +3,51 @@
   "version": "1.0.0",
   "main": "expo-router/entry",
   "scripts": {
-    "android": "expo start --android",
+    "android": "expo run:android",
     "lint": "eslint \"**/*.{js,jsx,ts,tsx}\" && prettier -c \"**/*.{js,jsx,ts,tsx,json}\"",
     "format": "eslint \"**/*.{js,jsx,ts,tsx}\" --fix && prettier \"**/*.{js,jsx,ts,tsx,json}\" --write",
-    "ios": "expo start --ios",
+    "ios": "expo run:ios",
     "start": "expo start",
+    "dev": "expo start --clear",
     "web": "expo start --web"
   },
   "dependencies": {
     "@expo/react-native-action-sheet": "^4.0.1",
     "@expo/vector-icons": "^14.0.0",
     "@gorhom/bottom-sheet": "^4",
-    "@react-native-community/datetimepicker": "7.7.0",
-    "@react-native-community/slider": "4.4.2",
-    "@react-native-menu/menu": "^0.9.1",
-    "@react-native-picker/picker": "2.6.1",
-    "@react-native-segmented-control/segmented-control": "2.4.1",
+    "@react-native-community/datetimepicker": "8.0.1",
+    "@react-native-community/slider": "4.5.2",
+    "@react-native-menu/menu": "^1.0.3",
+    "@react-native-picker/picker": "2.7.5",
+    "@react-native-segmented-control/segmented-control": "2.5.2",
     "@react-navigation/bottom-tabs": "^6.5.8",
     "@react-navigation/drawer": "^6.6.6",
     "@react-navigation/native": "^6.1.7",
     "@roninoss/icons": "^0.0.4",
-    "@shopify/flash-list": "1.6.3",
+    "@shopify/flash-list": "1.6.4",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
-    "expo": "^50.0.17",
-    "expo-constants": "~15.4.5",
-    "expo-dev-client": "~3.3.8",
-    "expo-linking": "~6.2.2",
-    "expo-navigation-bar": "~2.8.1",
+    "expo": "^51.0.14",
+    "expo-constants": "~16.0.2",
+    "expo-dev-client": "~4.0.18",
+    "expo-linking": "~6.3.1",
+    "expo-navigation-bar": "~3.0.6",
     "expo-router": "^3.4.7",
-    "expo-status-bar": "~1.11.1",
-    "expo-store-review": "~6.8.3",
-    "expo-system-ui": "~2.9.3",
-    "expo-web-browser": "~12.8.2",
+    "expo-status-bar": "~1.12.1",
+    "expo-store-review": "~7.0.2",
+    "expo-system-ui": "~3.0.6",
+    "expo-web-browser": "~13.0.3",
     "nativewind": "^4.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-native": "0.73.6",
-    "react-native-gesture-handler": "~2.14.0",
+    "react-native": "0.74.2",
+    "react-native-gesture-handler": "~2.16.2",
     "react-native-ios-context-menu": "^2.5.0",
     "react-native-ios-utilities": "^4.4.0",
-    "react-native-pager-view": "6.2.3",
-    "react-native-reanimated": "~3.6.2",
+    "react-native-pager-view": "6.3.0",
+    "react-native-reanimated": "~3.10.1",
     "react-native-safe-area-context": "^4.8.2",
-    "react-native-screens": "~3.29.0",
+    "react-native-screens": "~3.31.1",
     "react-native-uitextview": "^1.1.4",
     "react-native-web": "~0.19.10",
     "tailwind-merge": "^2.2.1",
@@ -62,23 +63,10 @@
     "prettier": "^3.2.5",
     "prettier-plugin-tailwindcss": "^0.5.11",
     "tailwindcss": "^3.4.0",
-    "typescript": "^5.4.5"
+    "typescript": "^5.3.3"
   },
   "eslintConfig": {
     "extends": "universe/native"
-  },
-  "resolutions": {
-    "expo-modules-core": "~1.11.0"
-  },
-  "overrides": {
-    "expo-modules-core": "~1.11.0"
-  },
-  "expo": {
-    "install": {
-      "exclude": [
-        "react-native-safe-area-context"
-      ]
-    }
   },
   "private": true
 }
