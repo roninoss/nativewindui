@@ -4,7 +4,7 @@ import { Platform } from 'react-native';
 import { useColorScheme } from '~/lib/useColorScheme';
 import { COLORS } from '~/theme/colors';
 
-export function Slider({
+function Slider({
   thumbTintColor,
   minimumTrackTintColor,
   maximumTrackTintColor,
@@ -22,3 +22,5 @@ export function Slider({
     />
   );
 }
+
+export { Slider };
