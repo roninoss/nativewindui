@@ -8,24 +8,19 @@ import * as React from 'react';
 import {
   Alert,
   Button as RNButton,
-  ButtonProps,
   Linking,
   Platform,
-  Pressable,
   Share,
   useWindowDimensions,
   View,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import * as ContextMenu from 'zeego/context-menu';
-import * as DropdownMenu from 'zeego/dropdown-menu';
 
 import { ActivityIndicator } from '~/components/nativewindui/ActivityIndicator';
 import { Avatar, AvatarFallback, AvatarImage } from '~/components/nativewindui/Avatar';
 import { DatePicker } from '~/components/nativewindui/DatePicker';
 import { Picker, PickerItem } from '~/components/nativewindui/Picker';
 import { ProgressIndicator } from '~/components/nativewindui/ProgressIndicator';
-import { SegmentedControl } from '~/components/nativewindui/SegmentedControl';
 import { Sheet, useSheetRef } from '~/components/nativewindui/Sheet';
 import { Slider } from '~/components/nativewindui/Slider';
 import { Text } from '~/components/nativewindui/Text';
@@ -37,11 +32,6 @@ cssInterop(FlashList, {
   className: 'style',
   contentContainerClassName: 'contentContainerStyle',
 });
-
-function DefaultButton({ color, ...props }: ButtonProps) {
-  const { colors } = useColorScheme();
-  return <RNButton color={color ?? colors.primary} {...props} />;
-}
 
 export default function Screen() {
   const searchValue = useHeaderSearchBar({ hideWhenScrolling: COMPONENTS.length === 0 });
@@ -179,23 +169,6 @@ const COMPONENTS: ComponentItem[] = [
       );
     },
   },
-
-  {
-    name: 'Segmented Controls',
-    component: function SegmentedControlsExample() {
-      const [segment, setSegment] = React.useState(0);
-      return (
-        <SegmentedControl
-          values={['red', 'green', 'blue']}
-          selectedIndex={segment}
-          onChange={(event) => {
-            setSegment(event.nativeEvent.selectedSegmentIndex);
-          }}
-        />
-      );
-    },
-  },
-
   {
     name: 'Slider',
     component: function SliderExample() {
@@ -215,91 +188,6 @@ const COMPONENTS: ComponentItem[] = [
       );
     },
   },
-
-  {
-    name: 'Context Menu',
-    component: function ContextMenuExample() {
-      const [isChecked, setIsChecked] = React.useState(true);
-      return (
-        <View>
-          <ContextMenu.Root style={{ borderRadius: 12 }}>
-            <ContextMenu.Trigger>
-              <View className="h-36 w-full items-center justify-center rounded-xl border border-dashed border-foreground">
-                <Text>Press and hold me</Text>
-              </View>
-            </ContextMenu.Trigger>
-            <ContextMenu.Content>
-              <ContextMenu.Label children="Label 1" />
-              <ContextMenu.Item key="item-1">
-                <ContextMenu.ItemTitle>Item 1</ContextMenu.ItemTitle>
-              </ContextMenu.Item>
-              <ContextMenu.Group>
-                <ContextMenu.Item key="item-2">
-                  <ContextMenu.ItemTitle>Item 2</ContextMenu.ItemTitle>
-                </ContextMenu.Item>
-                <ContextMenu.CheckboxItem
-                  key="checkbox-example"
-                  value={isChecked}
-                  onValueChange={(val) => {
-                    setIsChecked(val === 'on');
-                  }}>
-                  <ContextMenu.ItemTitle>Item 3</ContextMenu.ItemTitle>
-                  <ContextMenu.ItemIndicator />
-                </ContextMenu.CheckboxItem>
-              </ContextMenu.Group>
-              <ContextMenu.Separator />
-            </ContextMenu.Content>
-          </ContextMenu.Root>
-        </View>
-      );
-    },
-  },
-
-  {
-    name: 'Dropdown Menu',
-    component: function DropdownMenuExample() {
-      const { colors } = useColorScheme();
-      const [menu, setMenu] = React.useState<'primary' | 'destructive'>('primary');
-
-      return (
-        <View className="items-center">
-          <DropdownMenu.Root>
-            <DropdownMenu.Trigger>
-              <Pressable className="android:gap-3 flex-row items-center gap-1.5">
-                <Text>
-                  Selected: <Text style={{ color: colors[menu] }}>{menu}</Text>
-                </Text>
-                <View className="pl-0.5 opacity-70">
-                  <Icon name="chevron-down" color={colors.foreground} size={21} />
-                </View>
-              </Pressable>
-            </DropdownMenu.Trigger>
-            <DropdownMenu.Content>
-              <DropdownMenu.CheckboxItem
-                key="destructive"
-                value={menu === 'destructive'}
-                onValueChange={() => {
-                  setMenu('destructive');
-                }}>
-                <DropdownMenu.ItemIndicator />
-                <DropdownMenu.ItemTitle children="destructive" />
-              </DropdownMenu.CheckboxItem>
-              <DropdownMenu.CheckboxItem
-                key="primary"
-                value={menu === 'primary'}
-                onValueChange={() => {
-                  setMenu('primary');
-                }}>
-                <DropdownMenu.ItemIndicator />
-                <DropdownMenu.ItemTitle children="primary" />
-              </DropdownMenu.CheckboxItem>
-            </DropdownMenu.Content>
-          </DropdownMenu.Root>
-        </View>
-      );
-    },
-  },
-
   {
     name: 'Progress Indicator',
     component: function ProgressIndicatorExample() {
@@ -333,58 +221,6 @@ const COMPONENTS: ComponentItem[] = [
       );
     },
   },
-
-  {
-    name: 'Alert',
-    component: function AlertExample() {
-      const { colors } = useColorScheme();
-      return (
-        <View className="items-center">
-          <DefaultButton
-            color={colors.destructive}
-            onPress={() => {
-              if (Platform.OS === 'ios') {
-                Alert.prompt(
-                  'Delete account?',
-                  'Enter your password to delete your account.',
-                  [
-                    {
-                      text: 'Cancel',
-                      onPress: () => console.log('Cancel Pressed'),
-                      style: 'cancel',
-                    },
-                    {
-                      text: 'Delete',
-                      style: 'destructive',
-                      onPress: () => console.log('Delete Pressed'),
-                    },
-                  ],
-                  'secure-text',
-                  '',
-                  'default'
-                );
-              } else {
-                Alert.alert('Delete account?', 'Enter your password to delete your account.', [
-                  {
-                    text: 'Cancel',
-                    onPress: () => console.log('Cancel Pressed'),
-                    style: 'cancel',
-                  },
-                  {
-                    text: 'Delete',
-                    style: 'destructive',
-                    onPress: () => console.log('Delete Pressed'),
-                  },
-                ]);
-              }
-            }}
-            title="Delete account"
-          />
-        </View>
-      );
-    },
-  },
-
   {
     name: 'Action Sheet',
     component: function ActionSheetExample() {
@@ -392,7 +228,7 @@ const COMPONENTS: ComponentItem[] = [
       const { showActionSheetWithOptions } = useActionSheet();
       return (
         <View className="items-center">
-          <DefaultButton
+          <RNButton
             color="grey"
             onPress={async () => {
               const options = ['Delete', 'Save', 'Cancel'];
@@ -550,9 +386,11 @@ const COMPONENTS: ComponentItem[] = [
   {
     name: 'Activity View',
     component: function ActivityViewExample() {
+      const { colors } = useColorScheme();
       return (
         <View className="items-center">
-          <DefaultButton
+          <RNButton
+            color={colors.primary}
             onPress={async () => {
               try {
                 const result = await Share.share({
@@ -586,7 +424,7 @@ const COMPONENTS: ComponentItem[] = [
 
       return (
         <View className="items-center">
-          <DefaultButton
+          <RNButton
             color={colorScheme === 'dark' && Platform.OS === 'ios' ? 'white' : 'black'}
             title="Open Bottom Sheet"
             onPress={() => bottomSheetModalRef.current?.present()}
