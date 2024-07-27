@@ -3,10 +3,18 @@ import * as React from 'react';
 import { Pressable, View } from 'react-native';
 
 import { Text } from '~/components/nativewindui/Text';
+import { cn } from '~/lib/cn';
 
 export function DatePicker(
   props: React.ComponentProps<typeof DateTimePicker> & {
     mode: 'date' | 'time' | 'datetime';
+  } & {
+    materialDateClassName?: string;
+    materialDateLabel?: string;
+    materialDateLabelClassName?: string;
+    materialTimeClassName?: string;
+    materialTimeLabel?: string;
+    materialTimeLabelClassName?: string;
   }
 ) {
   const show = (currentMode: 'time' | 'date') => () => {
@@ -22,37 +30,39 @@ export function DatePicker(
   return (
     <View className="flex-row gap-2.5">
       {props.mode.includes('date') && (
-        <View className="relative pt-1.5">
+        <View className={cn('relative pt-1.5', props.materialDateClassName)}>
           <Pressable
             onPress={show('date')}
-            className="rounded-md border border-border px-5 py-3 active:opacity-80">
-            <Text variant="subhead">
+            className="border-foreground/30 rounded border py-3 pl-2.5 active:opacity-80">
+            <Text className="py-px">
               {new Intl.DateTimeFormat('en-US', {
                 dateStyle: 'medium',
               }).format(props.value)}
             </Text>
           </Pressable>
-          <View className="absolute left-2 top-0 bg-card px-1">
+          <View
+            className={cn('absolute left-2 top-0 bg-card px-1', props.materialDateLabelClassName)}>
             <Text variant="caption2" className="text-[10px] opacity-60">
-              Date
+              {props.materialDateLabel ?? 'Date'}
             </Text>
           </View>
         </View>
       )}
       {props.mode.includes('time') && (
-        <View className="relative pt-1.5">
+        <View className={cn('relative pt-1.5', props.materialTimeClassName)}>
           <Pressable
             onPress={show('time')}
-            className="rounded-md border border-border px-5 py-3 active:opacity-80">
-            <Text variant="subhead">
+            className="border-foreground/30 rounded border py-3 pl-2.5 active:opacity-80">
+            <Text className="py-px">
               {new Intl.DateTimeFormat('en-US', {
                 timeStyle: 'short',
               }).format(props.value)}
             </Text>
           </Pressable>
-          <View className="absolute left-2 top-0 bg-card px-1">
+          <View
+            className={cn('absolute left-2 top-0 bg-card px-1', props.materialTimeLabelClassName)}>
             <Text variant="caption2" className="text-[10px] opacity-60">
-              Time
+              {props.materialTimeLabel ?? 'Time'}
             </Text>
           </View>
         </View>
