@@ -19,6 +19,7 @@
     "@react-native-community/slider": "4.5.2",
     "@react-native-picker/picker": "2.7.5",
     "@react-navigation/native": "^6.1.7",
+    "@rn-primitives/avatar": "^1.0.4",
     "@roninoss/icons": "^0.0.4",
     "@shopify/flash-list": "1.6.4",
     "class-variance-authority": "^0.7.0",
