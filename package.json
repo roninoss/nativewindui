@@ -33,7 +33,7 @@
     "expo-status-bar": "~1.12.1",
     "expo-store-review": "~7.0.2",
     "expo-system-ui": "~3.0.6",
-    "nativewind": "4.1.10",
+    "nativewind": "^4.1.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.74.2",
