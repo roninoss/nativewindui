@@ -173,7 +173,12 @@ const COMPONENTS: ComponentItem[] = [
     name: 'Slider',
     component: function SliderExample() {
       const [sliderValue, setSliderValue] = React.useState(0.5);
-      return <Slider value={sliderValue} onValueChange={setSliderValue} />;
+      return <Slider 
+        value={sliderValue} 
+        onValueChange={setSliderValue} 
+        minimumValue={0}
+        maximumValue={1} 
+      />;
     },
   },
 
