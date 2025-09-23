@@ -1,15 +1,15 @@
 import RNSlider from '@react-native-community/slider';
 import { Platform } from 'react-native';
 
-import { useColorScheme } from '~/lib/useColorScheme';
-import { COLORS } from '~/theme/colors';
+import { useColorScheme } from '@/lib/useColorScheme';
+import { COLORS } from '@/theme/colors';
 
 function Slider({
   thumbTintColor,
   minimumTrackTintColor,
   maximumTrackTintColor,
   ...props
-}: React.ComponentPropsWithoutRef<typeof RNSlider>) {
+}: React.ComponentProps<typeof RNSlider>) {
   const { colors } = useColorScheme();
   return (
     <RNSlider
@@ -18,6 +18,8 @@ function Slider({
       maximumTrackTintColor={
         maximumTrackTintColor ?? Platform.OS === 'android' ? colors.primary : undefined
       }
+      minimumValue={0}
+      maximumValue={1}
       {...props}
     />
   );
