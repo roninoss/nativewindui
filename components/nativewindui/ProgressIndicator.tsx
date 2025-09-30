@@ -30,7 +30,7 @@ function ProgressIndicator({
   const indicator = useAnimatedStyle(() => {
     return {
       width: withSpring(
-        `${interpolate(progress.value, [0, 100], [1, 100], Extrapolation.CLAMP)}%`,
+        `${interpolate(progress.value, [0, max], [1, 100], Extrapolation.CLAMP)}%`,
         { overshootClamping: true }
       ),
     };
