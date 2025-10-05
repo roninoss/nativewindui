@@ -13,10 +13,10 @@ function Slider({
   const { colors } = useColorScheme();
   return (
     <RNSlider
-      thumbTintColor={thumbTintColor ?? Platform.OS === 'ios' ? COLORS.white : colors.primary}
+      thumbTintColor={(thumbTintColor ?? Platform.OS === 'ios') ? COLORS.white : colors.primary}
       minimumTrackTintColor={minimumTrackTintColor ?? colors.primary}
       maximumTrackTintColor={
-        maximumTrackTintColor ?? Platform.OS === 'android' ? colors.primary : undefined
+        (maximumTrackTintColor ?? Platform.OS === 'android') ? colors.primary : undefined
       }
       minimumValue={0}
       maximumValue={1}
