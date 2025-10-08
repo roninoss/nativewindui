@@ -136,7 +136,7 @@ const COMPONENTS: ComponentItem[] = [
     name: 'Avatar',
     component: function AvatarExample() {
       const TWITTER_AVATAR_URI =
-        'https://pbs.twimg.com/profile_images/1782428433898708992/1voyv4_A_400x400.jpg';
+        'https://pbs.twimg.com/profile_images/1974205123250565122/6iayFtdc_400x400.jpg';
       return (
         <View className="items-center">
           <Avatar alt="NativeWindUI Avatar">
